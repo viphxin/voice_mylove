@@ -34,7 +34,7 @@ def get_accesstocken():
             print r.content
             raise Exception("get_accesstocken error")
 
-def get_voice_url(text):
+def get_voice_url(text, spd=5, pit=5, vol=5, per=0):
     """
     获取语音合成文件并上传到cdn
     :param text:
@@ -45,7 +45,11 @@ def get_voice_url(text):
         "lan": "zh",
         "tok": get_accesstocken(),
         "ctp": 1,
-        "cuid": CLIENT_ID
+        "cuid": CLIENT_ID,
+        "spd": spd,
+        "pit": pit,
+        "vol": vol,
+        "per": per
     })
     if r.status_code == 200 and r.headers['Content-type'] == 'audio/mp3':
         cdn_url = upyunclient.uploadData(r.content, upyunclient.genFileName("voice_mylove/") + ".mp3", None)

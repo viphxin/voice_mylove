@@ -24,11 +24,18 @@ def addRecord(request):
     short_desc = request.POST.get("short_desc", None)
     text = request.POST.get("text", None)
     checkcode = request.POST.get("checkcode", None)
+
+    #自定义参数
+    spd = request.POST.get("spd", 5)
+    pit = request.POST.get("pit", 5)
+    vol = request.POST.get("vol", 5)
+    per = request.POST.get("per", 0)
+
     print request.POST
     if nickname and short_desc and text and checkcode and checkcode.lower() == request.session.get('checkcode', u"攻击"):
         if len(nickname) > 10 or len(short_desc) > 10 or len(text) > 512:
             return HttpResponse(json.dumps({"error": "text length max exceed!!!!!!!!"}))
-        cdn_url = get_voice_url(text)
+        cdn_url = get_voice_url(text, spd=spd, pit=pit, vol=vol, per=per)
         #入库
         md5sign = hashlib.md5()
         md5sign.update(text.encode("utf-8"))
