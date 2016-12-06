@@ -1,7 +1,7 @@
 #coding=utf-8
 import multiprocessing
 
-bind = "0.0.0.0:8008"
+bind = "0.0.0.0:9993"
 #bind = "unix:/home/sy/workspace/foodgame_server/passport/passport/gunicorn.sock"
 workers = multiprocessing.cpu_count() / 2
 backlog = 2048
@@ -26,7 +26,7 @@ keepalive = 2
 #热更
 reload = False
 #chdir = "/home/sy/workspace/foodgame_server/passport"
-chdir = "/home/huangxin/workspace/foodgame_server/passport"
+chdir = "/home/huangxin/mygitbub/voice_mylove/voice_mylove"
 user = "huangxin"
 group = "huangxin"
 umask = "0155"
@@ -45,3 +45,4 @@ loglevel = "info"
 # raw_env = "passport:wsgi"
 import pymysql
 pymysql.install_as_MySQLdb()
+#gunicorn -c voice_mylove/gunicorn_config.py voice_mylove.wsgi:application

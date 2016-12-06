@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from django.conf import settings
 from main import views, code_views
 
 urlpatterns = [
@@ -24,3 +25,7 @@ urlpatterns = [
     url(r'^addrecord/$', views.addRecord, name='addrecord'),
     url(r'^share/(?P<share_id>.+)/$', views.share, name='share'),
 ]
+
+if settings.DEBUG:
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()
