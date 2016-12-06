@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block head %}
+<script src="/static/audiojs/audio.min.js"></script>
+<script>
+  audiojs.events.ready(function() {
+    var as = audiojs.createAll();
+  });
+
+  function changeColor(){
+    var color="#f00|#0f0|#00f|#880|#808|#088|yellow|green|blue|gray";
+    color=color.split("|");
+    document.getElementById("blink").style.color=color[parseInt(Math.random() * color.length)];
+    }
+  setInterval("changeColor()", 250);
+</script>
+
+{% endblock %}
+{% block content %}
+<h2>
+    以下有*{{nickname}}*在*{{log_time}}*给你的留言:</br>
+    <div id="blink">{{short_desc}}</div>
+</h2>
+
+<a href="/" class="btn btn-primary btn-lg active" role="button">我也要留言</a>
+<audio src="{{cdn_url}}" preload="auto" />
+
+{% endblock %}

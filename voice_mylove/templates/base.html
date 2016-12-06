@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="Keywords" content="网嘴，互联网的嘴巴，智能语音，语音合成，读诗，读情话">
+    <meta name="Description" itemprop="description" content="网嘴，互联网的嘴巴，智能语音，语音合成，读诗，读情话">
+    <title>网嘴, 互联网的嘴巴{% block title %}{% endblock %}</title>
+    {% block head %}{% endblock %}
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+
+    <!-- 可选的Bootstrap主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap-theme.min.css">
+
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <style type=text/css>
+      body{
+          background-image:url("/static/images/base_mouse.jpg");
+          background-repeat:repeat;
+          background-position: center;
+          margin-top: 10%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="row" style="padding-top: 5%">
+      <div class="col-md-4">
+          <h1>网嘴, 您互联网上的嘴巴, 我们可以</h1>
+            <h2>读情诗</h2>
+            <h3>读情话</h3>
+            <h4>表白</h4>
+            <h5>送祝福</h5>
+            <h6>语言暴力等</h6>
+      </div>
+      <div class="col-md-8">
+        {% block content %}{% endblock %}
+      </div>
+    </div>
+
+    <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"网嘴,您互联网上的嘴巴","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"slide":{"type":"slide","bdImg":"1","bdPos":"right","bdTop":"199"},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"},"selectShare":{"bdContainerClass":null,"bdSelectMiniList":["qzone","tsina","tqq","renren","weixin"]}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+  </body>
+</html>
