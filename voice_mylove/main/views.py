@@ -32,27 +32,30 @@ def addRecord(request):
     per = request.POST.get("per", 0)
 
     print request.POST
-    if nickname and short_desc and text and checkcode and checkcode.lower() == request.session.get('checkcode', u"攻击"):
-        if len(nickname) > 10 or len(short_desc) > 10 or len(text) > 512:
-            return HttpResponse(json.dumps({"error": "text length max exceed!!!!!!!!"}))
-        cdn_url = get_voice_url(text, spd=spd, pit=pit, vol=vol, per=per)
-        #入库
-        md5sign = hashlib.md5()
-        md5sign.update(text.encode("utf-8"))
-        md5sign.update("%s" % time.time())
+    if nickname and short_desc and text:
+        if checkcode and checkcode.lower() == request.session.get('checkcode', u"攻击"):
+            if len(nickname) > 10 or len(short_desc) > 10 or len(text) > 512:
+                return HttpResponse(json.dumps({"error": "text length max exceed!!!!!!!!"}))
+            cdn_url = get_voice_url(text, spd=spd, pit=pit, vol=vol, per=per)
+            #入库
+            md5sign = hashlib.md5()
+            md5sign.update(text.encode("utf-8"))
+            md5sign.update("%s" % time.time())
 
-        share_id = md5sign.hexdigest()
-        VoiceRecord.objects.create(
-            nickname=nickname,
-            short_desc=short_desc,
-            text=text,
-            voice_url=cdn_url,
-            share_id=share_id
-        )
-        #跳转到播放页
-        return HttpResponseRedirect("/share/%s/" % share_id)
+            share_id = md5sign.hexdigest()
+            VoiceRecord.objects.create(
+                nickname=nickname,
+                short_desc=short_desc,
+                text=text,
+                voice_url=cdn_url,
+                share_id=share_id
+            )
+            #跳转到播放页
+            return HttpResponseRedirect("/share/%s/" % share_id)
+        else:
+            return HttpResponse(json.dumps({"error": "验证码有误!!!!!!!!"}))
     else:
-        return HttpResponse(json.dumps({"error": "param error!!!!!!!!"}))
+        return HttpResponse(json.dumps({"error": "param error. 所有参数都是必填项!!!!!!!!"}))
 
 def share(request, share_id):
     try:
