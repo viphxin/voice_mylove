@@ -26,7 +26,7 @@ def addRecord(request):
     checkcode = request.POST.get("checkcode", None)
     print request.POST
     if nickname and short_desc and text and checkcode and checkcode.lower() == request.session.get('checkcode', u"攻击"):
-        if len(nickname) > 10 or len(short_desc) > 10 or len(text) > 100:
+        if len(nickname) > 10 or len(short_desc) > 10 or len(text) > 512:
             return HttpResponse(json.dumps({"error": "text length max exceed!!!!!!!!"}))
         cdn_url = get_voice_url(text)
         #入库
